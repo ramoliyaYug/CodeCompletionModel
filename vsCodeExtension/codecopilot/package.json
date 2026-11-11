@@ -1,0 +1,105 @@
+{
+  "name": "codecopilot",
+  "displayName": "CodeCopilot",
+  "description": "AI-powered inline code completion for Python using a fine-tuned StarCoder2 model",
+  "version": "0.1.0",
+  "publisher": "mastermind",
+  "engines": {
+    "vscode": "^1.142.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning"
+  ],
+  "activationEvents": [
+    "onLanguage:python"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codecopilot.toggle",
+        "title": "CodeCopilot: Toggle Enable/Disable"
+      },
+      {
+        "command": "codecopilot.checkHealth",
+        "title": "CodeCopilot: Check Server Health"
+      }
+    ],
+    "configuration": {
+      "title": "CodeCopilot",
+      "properties": {
+        "codecopilot.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable CodeCopilot inline completions"
+        },
+        "codecopilot.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "URL of the CodeCopilot backend server"
+        },
+        "codecopilot.maxNewTokens": {
+          "type": "integer",
+          "default": 64,
+          "minimum": 1,
+          "maximum": 512,
+          "description": "Maximum number of tokens to generate per completion"
+        },
+        "codecopilot.temperature": {
+          "type": "number",
+          "default": 0.2,
+          "minimum": 0.0,
+          "maximum": 2.0,
+          "description": "Sampling temperature (lower = more deterministic)"
+        },
+        "codecopilot.topP": {
+          "type": "number",
+          "default": 0.95,
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Nucleus sampling probability"
+        },
+        "codecopilot.debounceMs": {
+          "type": "integer",
+          "default": 300,
+          "minimum": 50,
+          "maximum": 2000,
+          "description": "Debounce delay in milliseconds before sending a completion request"
+        },
+        "codecopilot.enableFim": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Fill-In-The-Middle (FIM) mode using code after the cursor as context"
+        },
+        "codecopilot.languages": {
+          "type": "array",
+          "default": [
+            "python"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "List of language IDs to enable completions for"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.142.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "24.x",
+    "eslint": "^10.5.0",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0"
+  },
+  "overrides": {
+    "diff": "^8.0.4",
+    "serialize-javascript": "^7.0.6"
+  }
+}

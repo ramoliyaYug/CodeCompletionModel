@@ -1,0 +1,18 @@
+# FastAPI Web Framework & Server
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# Deep Learning & Model Inference (Matches fine-tuning environment)
+torch>=2.0.0
+transformers>=4.48.0
+peft>=0.14.0
+bitsandbytes>=0.45.0
+accelerate>=1.2.0
+safetensors>=0.4.0
+
+# Testing & Client
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+httpx>=0.25.0
